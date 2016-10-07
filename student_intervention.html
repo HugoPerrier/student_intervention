@@ -208,7 +208,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer: </strong></p>
+<p><strong>Answer: </strong>
+The goal here is to determine whether a student requires an intervention or not based on data available. This means we want to classify each student in one of the two categories (discrete output) "Need intervention" or "Do not need intervention". This is therefore a classification problem.</p>
 
 </div>
 </div>
@@ -225,7 +226,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -277,14 +278,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Calculate number of students</span>
 <span class="n">n_students</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">student_data</span><span class="p">)</span>
 
 <span class="c1"># TODO: Calculate number of features</span>
-<span class="n">n_features</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">n_features</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1"># Start at -1 to remove the &#39;label&#39; column</span>
 <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">student_data</span><span class="p">:</span>
     <span class="n">n_features</span> <span class="o">=</span> <span class="n">n_features</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="c1">#print column</span>
@@ -299,7 +300,7 @@ div#notebook {
 <span class="n">n_failed</span> <span class="o">=</span> <span class="n">n_students</span> <span class="o">-</span> <span class="n">n_passed</span>
 
 <span class="c1"># TODO: Calculate graduation rate</span>
-<span class="n">grad_rate</span> <span class="o">=</span> <span class="n">n_passed</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
+<span class="n">grad_rate</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">n_passed</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
 
 <span class="c1"># Print the results</span>
 <span class="k">print</span> <span class="s2">&quot;Total number of students: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_students</span><span class="p">)</span>
@@ -320,10 +321,10 @@ div#notebook {
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of students: 395
-Number of features: 31
+Number of features: 30
 Number of students who passed: 265
 Number of students who failed: 130
-Graduation rate of the class: 0.67%
+Graduation rate of the class: 67.09%
 </pre>
 </div>
 </div>
@@ -346,7 +347,7 @@ Graduation rate of the class: 0.67%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -388,7 +389,7 @@ Feature values:
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -566,7 +567,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -614,7 +615,7 @@ Feature values:
 </div>
 </div>
 
-<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -798,7 +799,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -924,7 +925,7 @@ The current data set of 300 training points is relatively small so NB is suitabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -997,7 +998,7 @@ The current data set of 300 training points is relatively small so NB is suitabl
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -1006,8 +1007,8 @@ The current data set of 300 training points is relatively small so NB is suitabl
 <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
 
 <span class="c1"># TODO: Initialize the three models</span>
-<span class="n">clf_A</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">()</span>
-<span class="n">clf_B</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">()</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">clf_C</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
 
 <span class="c1"># TODO: Set up the training set sizes</span>
@@ -1045,58 +1046,58 @@ The current data set of 300 training points is relatively small so NB is suitabl
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0015 seconds
-Made predictions in 0.0008 seconds.
+Trained model in 0.0269 seconds
+Made predictions in 0.0013 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0004 seconds.
-F1 score for test set: 0.7080.
+F1 score for test set: 0.6942.
 Training a SVC using a training set size of 100. . .
-Trained model in 0.0021 seconds
-Made predictions in 0.0011 seconds.
+Trained model in 0.0253 seconds
+Made predictions in 0.0023 seconds.
 F1 score for training set: 0.8591.
-Made predictions in 0.0008 seconds.
+Made predictions in 0.0012 seconds.
 F1 score for test set: 0.7838.
 Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0010 seconds
-Made predictions in 0.0003 seconds.
+Trained model in 0.0025 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 0.8550.
-Made predictions in 0.0004 seconds.
+Made predictions in 0.0003 seconds.
 F1 score for test set: 0.7481.
 Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0022 seconds
-Made predictions in 0.0004 seconds.
+Trained model in 0.0016 seconds
+Made predictions in 0.0002 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0003 seconds.
-F1 score for test set: 0.7087.
+Made predictions in 0.0002 seconds.
+F1 score for test set: 0.7132.
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0054 seconds
-Made predictions in 0.0048 seconds.
+Trained model in 0.0036 seconds
+Made predictions in 0.0026 seconds.
 F1 score for training set: 0.8693.
-Made predictions in 0.0020 seconds.
+Made predictions in 0.0017 seconds.
 F1 score for test set: 0.7755.
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0012 seconds
-Made predictions in 0.0006 seconds.
+Trained model in 0.0011 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 0.8321.
 Made predictions in 0.0003 seconds.
 F1 score for test set: 0.7132.
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0022 seconds
-Made predictions in 0.0002 seconds.
+Trained model in 0.0023 seconds
+Made predictions in 0.0003 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.6897.
+F1 score for test set: 0.7167.
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0125 seconds
-Made predictions in 0.0075 seconds.
+Trained model in 0.0102 seconds
+Made predictions in 0.0079 seconds.
 F1 score for training set: 0.8692.
-Made predictions in 0.0025 seconds.
+Made predictions in 0.0021 seconds.
 F1 score for test set: 0.7586.
 Training a GaussianNB using a training set size of 300. . .
-Trained model in 0.0017 seconds
-Made predictions in 0.0012 seconds.
+Trained model in 0.0011 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 0.8088.
-Made predictions in 0.0004 seconds.
+Made predictions in 0.0003 seconds.
 F1 score for test set: 0.7500.
 </pre>
 </div>
@@ -1134,10 +1135,10 @@ F1 score for test set: 0.7500.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0020</td>
-<td style="text-align:center">0.0005</td>
+<td style="text-align:center">0.00269</td>
+<td style="text-align:center">0.0004</td>
 <td style="text-align:center">1.0000</td>
-<td style="text-align:center">0.7059</td>
+<td style="text-align:center">0.6942</td>
 </tr>
 <tr>
 <td style="text-align:center">200</td>
@@ -1168,8 +1169,8 @@ F1 score for test set: 0.7500.
 <tbody>
 <tr>
 <td style="text-align:center">100</td>
-<td style="text-align:center">0.0016</td>
-<td style="text-align:center">0.0015</td>
+<td style="text-align:center">0.0253</td>
+<td style="text-align:center">0.0012</td>
 <td style="text-align:center">0.8591</td>
 <td style="text-align:center">0.7838</td>
 </tr>
@@ -1277,9 +1278,14 @@ SVM perform well but the training and prediction times are a bit longer. Given t
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong>
-The idea of Naive Bayes is to make use of statistics tools like Bayes Rule and Conditional probability to express the probability of an outcome given some observations 
-P[Outcome | Observations] using the probability of making each observations given the outcome P[Observations | Outcome] which is much easier to evaluate. Then to do the classification, the probability of each outcomes given the features is evaluated and the most likely outcome is choosen.</p>
-<p>The probabilities P[Observations | Outcome] can be computed during the "training" process and then prediction can be made just by multiplying these probabilities and choosing the most likely outcome which is easy to implement, quick and efficient.</p>
+The idea of Naive Bayes is to predict an outcome based on a set of observations. The link between each observation and the outcome is known so to make a prediction the following process is applied:</p>
+<ul>
+<li>A set of observations is available</li>
+<li>Each observation is processed independently</li>
+<li>For each observation, its effect on the outcome is evaluated (using the known statistical link between this observation and the outcome)</li>
+<li>The individual effects of each observation are gathered to obtain a probability for each possible outcome</li>
+<li>The outcome with the highest probability is predicted by the model.</li>
+</ul>
 
 </div>
 </div>
